@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<meta charset="utf-8">
+<html>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+ <head>
+ </head>
+	<body>
+		<div class="hr">
+			<h1 class="master1"> Java Script. Функции высшего порядка</h1>
+
+			<br>
+			
+
+
+			<button id="btn1">Проверить задание </button>
+			<br>
+			<div>
+				<p class="testResult">
+				</p>
+			</div>
+			<br>
+
+			<br>
+		</div>
+
+		<script>
+		function addTextToArea(element, text) {
+					element.innerHTML += "<p>"+text+"</p>";
+				}
+		function test(){		
+		fetch('https://6448119550c25337443794f0.mockapi.io/contacts')
+		  .then((response) => {
+			return response.json();
+		  })
+		  .then((data) => {
+			console.log(data);
+			const textTestResult = document.querySelector('.testResult');
+			let arr=[];
+			for (i in data) {
+				arr.push( data[i].number);
+			}
+			
+			addTextToArea(textTestResult,"Массив: " + arr);
+			const evenNumber = data.filter(data => data.number%2==0);
+			let arr2=[];
+			for (i in evenNumber) {
+				arr2.push( evenNumber[i].number);
+			}
+			addTextToArea(textTestResult,"Результат: " + arr2);
+		  });
+		 }
+				const btn1 = document.getElementById('btn1');
+				btn1.addEventListener('click', test);
+  
+		</script>
+
+	</body>

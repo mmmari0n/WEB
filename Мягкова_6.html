@@ -52,9 +52,45 @@
 			
 			<br>
 			
+			<button id="btn3">Вычисление среднего значения данных в массиве</button>
+			<br>
+			<div>
+				<p class="avgArray">
+				</p>
+			</div>
+			<br>
+			<br>
 			
+			<button id="btn4">Выявить все четные, умножить каждый элемент на 2 и сумма элементов</button>
+			<br>
+			<div>
+				<p class="avgArray2">
+				</p>
+			</div>
+			<br>
+			<br>
 
-			
+			<div>
+			<form name="test1" >
+				<p><b>Ваше имя:</b><br><input type="text" size="40" required id="nameField" class="nameField">
+				</p>
+				
+			</form>	
+			</div>
+
+			<button id="btn5">Перевернуть имя</button>
+			<br>
+			<div>
+				<p class="avgArray2">
+				</p>
+			</div>
+			<br>
+			<div>
+				<p class="nameReversed">
+				</p>
+			</div>
+
+			<br>
 		</div>
 		
 		<script>
@@ -66,6 +102,10 @@
 				const textTest2Result = document.querySelector('.test2Result');
 				const textClassUser = document.querySelector('.classUser');
 				const textNameReversed = document.querySelector('.nameReversed');
+				const textAvgArray = document.querySelector('.avgArray');
+				const textAvgArray2 = document.querySelector('.avgArray2');
+				
+
 
 				function checkTest1(){
 					const answerField = document.querySelector('.test1Field');
@@ -109,17 +149,45 @@
 					r=answer === "да" ? "верно" : "неверно";
 					addTextToArea(textTest2Result,"Результат: " + r);					
 				};				
-					
 				
+				function avgArray() {
+					const arr = Array(15).fill(0).map(() => Math.floor(40 * Math.random()) - 10);
+					const avg = arr.reduce((sum, item) => sum + item, 0) / arr.length;
+					
+					addTextToArea(textAvgArray, "Массив: "+arr);
+					addTextToArea(textAvgArray, "Среднее: "+avg);
+				}
+				
+				function avgArray2() {
+					const arr = Array(15).fill(0).map(() => Math.floor(40 * Math.random()) - 10);
+					addTextToArea(textAvgArray2, "Массив1: "+arr);
+					const arr2 = arr.map(item => item % 2 == 0 ? item * 2 : item)
+					addTextToArea(textAvgArray2, "Массив преобразованный: "+arr2);
+					const sum = arr.reduce((sum, item) => sum + item, 0) ;
+					addTextToArea(textAvgArray2, "Сумма элементов: "+sum);
+				}
+				function reverseName() {
+				
+					const nameField = document.querySelector('.nameField');
+					const userName = nameField.value;
+					const reversed = userName.split(' ').map( userName => userName.split('').reverse().join('')).join(' ');
+					addTextToArea(textNameReversed,"<b>Перевернутое имя: </b>" + reversed);
+				}
 				const btn1 = document.getElementById('btn1');
 				btn1.addEventListener('click', checkTest1);
 				
 				const btn2 = document.getElementById('btn2');
 				btn2.addEventListener('click', checkTest2);
 				
+				const btn3 = document.getElementById('btn3');
+				btn3.addEventListener('click', avgArray);
 				
+				const btn4 = document.getElementById('btn4');
+				btn4.addEventListener('click', avgArray2);
+				
+				const btn5 = document.getElementById('btn5');
+				btn5.addEventListener('click', reverseName);
+
 
 </script>
 </body>
-	
-</html>
