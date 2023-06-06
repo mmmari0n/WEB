@@ -34,7 +34,7 @@
 			<form name="test2" >
 				<p><b>Тестовое задание 2:</b>
 				</p>
-				<p><b>Введите да/нет  :</b>
+				<p>Введите да/нет :
 				</p>
 				<p><b>На ноль делить нельзя:</b><br><input type="text" size="40" required id="test2Field" class="test2Field">
 				</p>
@@ -67,17 +67,48 @@
 				const textClassUser = document.querySelector('.classUser');
 				const textNameReversed = document.querySelector('.nameReversed');
 
-				function CheckTest1(){
+				function checkTest1(){
 					const answerField = document.querySelector('.test1Field');
+					function ask(question, yes, no) {
+						  if (confirm(question)) yes()
+						  else no();
+						}
+
+					ask(
+						  "Вы согласны, что дважды два равно четыре?",
+						  function() { alert("Вы согласились." + "Это верно.");
+						  answerField.value	= "да"},
+						  function() { alert("Вы не согласились. Это неверно");
+						  answerField.value	= "нет"}
+						);
+						
+					
 					const answer = answerField.value;
-					
-					console.log("ТУТ");
-					
-					
-					
+					r=answer === "да" ? "верно" : "неверно";
+					addTextToArea(textTest1Result,"Результат: " + r);
+									
 				};
 				
-								
+				function checkTest2(){
+					const answerField = document.querySelector('.test2Field');
+					function ask(question, yes, no) {
+						  if (confirm(question)) yes()
+						  else no();
+						}
+
+					ask(
+						  "Вы согласны, что на ноль делить нельзя?",
+						  function() { alert("Вы согласились." + "Это верно.");
+						  answerField.value	= "да"},
+						  function() { alert("Вы не согласились. Это неверно");
+						  answerField.value	= "нет"}
+						);
+						
+					
+					const answer = answerField.value;
+					r=answer === "да" ? "верно" : "неверно";
+					addTextToArea(textTest2Result,"Результат: " + r);					
+				};				
 					
 				
 				const btn1 = document.getElementById('btn1');
