@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<meta charset="utf-8">
+<html>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+ <head>
+ </head>
+	<body>
+		<div class="hr">
+			<h1 class="master1"> Массивы </h1>
+			<div>
+				<h2 class="master11"> Результаты: </h1>
+					<p class="results">
+					</p>
+
+			</div>
+			
+			<button id="btn">Проверить</button>
+			<h2 class="master2" font-size=50>  </h2>
+			
+			
+			
+		</div>
+		<script>
+				function addTextToArea(element, text) {
+					element.innerHTML += "<p>"+text+"</p>";
+				}
+				function addTextTitle(element, text) {
+					element.innerHTML += text;
+				}
+				
+				function clearTextToArea(element) {
+					element.innerHTML = "";
+				}
+				function clearTextTitle(element) {
+					element.innerHTML = "";
+				}
+				
+				let resultText;
+				const textArea = document.querySelector('.results');
+				
+				
+				function findResults() {
+				  clearTextToArea(textArea);
+				  clearTextTitle(textArea);
+				  
+				  const step1 = Array(15).fill(0).map(() => Math.floor(40 * Math.random()) - 10);
+				  addTextTitle(textArea, "<b>Задание 1 </b>");
+				  addTextToArea(textArea,"Массив: " + step1);
+				
+				  const step2 = step1.map(item => item < 0 ? item ** 2 : item);
+				  addTextTitle(textArea, "<b>Задание 2 </b>");
+				  addTextToArea(textArea, "Массив с квадратами вместо отрицательных:" +step2);
+					
+				  const step3_1_array = step1.filter(item => item > 0)
+				  const step3_1_avg = step3_1_array.reduce((sum, item) => sum + item, 0) / step3_1_array.length;
+				  addTextTitle(textArea, "<b>Задание 3 </b>");
+				  addTextToArea(textArea, "Массив отрицательных: "+step3_1_array);
+				  addTextToArea(textArea, "Среднее отрицательных: "+step3_1_avg);
+
+				  const step3_2_array = step1.filter(item => item < 0)
+				  const step3_2_avg = step3_1_array.reduce((sum, item) => sum + item, 0) / step3_2_array.length;
+				  addTextToArea(textArea, "Массив положительных: "+step3_2_array);
+				  addTextToArea(textArea, "Среднее положительных: "+step3_2_avg);
+
+				  const step3_3_sum = step1.filter(item => item === 0).length
+				  addTextToArea(textArea, "Число нулей: "+step3_3_sum);
+
+				  let lastItem = 0, maxCount = 0, currentCount = 0;
+				  let list = '';
+				  let arr=[]
+				  for (let i = 1; i < 1000000; i++) {
+					let item = Math.floor(Math.random() * 3);
+					arr.push(item);
+					if (item === 0 && lastItem === 0) {
+					  ++currentCount;
+					}
+
+					if (item !== 0) {
+					  maxCount = (currentCount > maxCount) ? currentCount : maxCount;
+					  currentCount = 1;
+					}
+
+					lastItem = item;
+				  }
+				  addTextTitle(textArea, "<b>Задание 4 </b>");
+				  addTextToArea(textArea, "Массив: "+arr);
+				  addTextToArea(textArea, "Длина последовательности: "+maxCount);
+						
+				}
+				const btn = document.getElementById('btn');
+				btn.addEventListener('click', findResults);
+				
+				
+</script>
+</body>
+	
+</html>

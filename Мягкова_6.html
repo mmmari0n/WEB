@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<meta charset="utf-8">
+<html>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+ <head>
+ </head>
+	<body>
+		<div class="hr">
+			<h1 class="master1"> Java Script. Стрелочные функции </h1>
+
+			<br>
+			
+
+			<div>	
+			<form name="test1" >
+				<p><b>Тестовое задание 1:</b>
+				</p>
+				<p>Введите да/нет :
+				</p>
+				<p><b>Дважды два равно четыре:</b><br><input type="text" size="40" required id="test1Field" class="test1Field">
+				</p>
+			</form>	
+			</div>
+
+			<button id="btn1">Проверить тестовое задание 1</button>
+			<br>
+			<div>
+				<p class="test1Result">
+				</p>
+			</div>
+			<br>
+			
+			<div>
+			<form name="test2" >
+				<p><b>Тестовое задание 2:</b>
+				</p>
+				<p><b>Введите да/нет  :</b>
+				</p>
+				<p><b>На ноль делить нельзя:</b><br><input type="text" size="40" required id="test2Field" class="test2Field">
+				</p>
+			</form>
+			</div>
+			
+			<button id="btn2">Проверить тестовое задание 2</button>
+			<br>
+			<div>
+				<p class="test2Result">
+				</p>
+			</div>
+			<br>
+			<br>
+			
+			<br>
+			
+			
+
+			
+		</div>
+		
+		<script>
+				function addTextToArea(element, text) {
+					element.innerHTML += "<p>"+text+"</p>";
+				}
+				
+				const textTest1Result = document.querySelector('.test1Result');
+				const textTest2Result = document.querySelector('.test2Result');
+				const textClassUser = document.querySelector('.classUser');
+				const textNameReversed = document.querySelector('.nameReversed');
+
+				function CheckTest1(){
+					const answerField = document.querySelector('.test1Field');
+					const answer = answerField.value;
+					
+					console.log("ТУТ");
+					
+					
+					
+				};
+				
+								
+					
+				
+				const btn1 = document.getElementById('btn1');
+				btn1.addEventListener('click', checkTest1);
+				
+				const btn2 = document.getElementById('btn2');
+				btn2.addEventListener('click', checkTest2);
+				
+				
+
+</script>
+</body>
+	
+</html>

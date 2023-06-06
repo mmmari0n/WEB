@@ -1,0 +1,195 @@
+<!DOCTYPE HTML>
+<meta charset="utf-8">
+<html>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+ <head>
+ </head>
+	<body>
+		<div class="hr">
+			<h1 class="master1"> Java Script. Классы и функции </h1>
+
+			<br>
+			
+			<button id="btn">ТЕСТ Привет, я JavaScript</button>
+			<br>
+			<br>
+
+			<div>	
+			<form name="test" >
+				<p><b>Введите строку:</b><br><input type="text" size="40" required id="stringField" class="stringField">
+				</p>
+				
+			</form>	
+			</div>
+
+			<button id="btn2">Проверить: является ли строка палиндромом</button>
+			<div>
+				<p class="testPalindrom">
+				</p>
+			</div>
+			<br>
+			
+			
+			<button id="btn3">Заменить в массиве отрицательные элементы их квадратами</button>			
+			<br>
+			<div>
+				<p class="array">
+				</p>
+			</div>
+			<br>
+			
+			<button id="btn4">Смотреть класс с переменной "имя пользователя"</button>
+			<br>
+			<div>
+				<p class="classUser">
+				</p>
+			</div>
+			<br>
+			
+			<div>
+			<form name="test1" >
+				<p><b>Ваше имя:</b><br><input type="text" size="40" required id="nameField" class="nameField">
+				</p>
+				
+			</form>	
+			</div>
+			
+			<button id="btn5">Перевернуть ваше имя</button>
+			<br>
+			<br>
+			<div>
+				<p class="nameReversed">
+				</p>
+			</div>
+
+			
+		</div>
+		
+		<script>
+				function addTextToArea(element, text) {
+					element.innerHTML += "<p>"+text+"</p>";
+				}
+				
+				const textTestPalindrom = document.querySelector('.testPalindrom');
+				const textArray = document.querySelector('.array');
+				const textClassUser = document.querySelector('.classUser');
+				const textNameReversed = document.querySelector('.nameReversed');
+
+
+				
+				function sayHiJavaScript(){
+					function showMessage() {
+						let message = "Привет, я JavaScript!"; // локальная переменная
+						alert(message);
+						}
+
+					showMessage();
+				}
+				
+				function reverseString(inputstring){
+				
+					string = inputstring.toLowerCase().replace(/\W/g, '');
+					
+					const stringArray = [...string];
+					const reversedArray = [];
+					
+					stringArray.forEach(index => {
+						reversedArray.unshift(index);
+						});
+						
+					const reversedString = reversedArray.join('');
+					return reversedString;
+				}
+				
+				function ModifyNegativeItemOfArray(arr){
+				
+					const newArr = arr.map(item => item < 0 ? item ** 2 : item);
+					
+					return newArr
+				}
+				
+				function testPalindrom(){
+				
+					const stringField = document.querySelector('.stringField');
+					const userString = stringField.value;
+					
+					if (userString.toLowerCase().replace(/\W/g, '') === reverseString(userString)) {
+						console.log("Да, палиндром");
+						addTextToArea(textTestPalindrom,"Является палиндромом");
+					}
+                    else {					  
+						console.log("Нет, не палиндром");
+						addTextToArea(textTestPalindrom,"Не является палиндромом");
+					}
+				}
+				
+				function changeArray(){
+					randomArray = Array(15).fill(0).map(() => Math.floor(40 * Math.random()) - 10);
+					addTextToArea(textArray,"Массив: " + randomArray);
+					addTextToArea(textArray,"Массив с заменой отрицательных их квадратами:" + ModifyNegativeItemOfArray(randomArray));
+				}
+				
+				function viewClass(){
+					class User{
+						constructor(name){
+						this.name = name;
+						}
+
+						viewName(){
+						addTextToArea(textClassUser,"Меня зовут "+this.name);
+
+						}
+						sayHi(){
+						addTextToArea(textClassUser,"Привет, "+this.name);
+						}
+					}
+					let user1 = new User("Иван Иванович");
+					user1.viewName();
+					user1.sayHi();
+				}
+				
+				function reverseName(){
+					class User_{
+						constructor(name){
+						this.name = name;
+						}
+						
+						
+						viewReverseName(){
+						
+							let user_Name = this.name;
+							let reversedName = user_Name.split("").reverse().join("")
+							return reversedName;
+							
+						};
+					}	
+					const nameField = document.querySelector('.nameField');
+					const userName = nameField.value;
+	
+					
+					let actualUser = new User_(userName);
+					addTextToArea(textNameReversed,"<b>Перевернутое имя: </b>" + actualUser.viewReverseName());
+				}
+					
+					
+				
+				const btn = document.getElementById('btn');
+				btn.addEventListener('click', sayHiJavaScript);
+				
+				const btn2 = document.getElementById('btn2');
+				btn2.addEventListener('click', testPalindrom);
+				
+				const btn3 = document.getElementById('btn3');
+				btn3.addEventListener('click', changeArray);
+				
+				const btn4 = document.getElementById('btn4');
+				btn4.addEventListener('click', viewClass);
+
+				const btn5 = document.getElementById('btn5');
+				btn5.addEventListener('click', reverseName);
+				
+
+</script>
+</body>
+	
+</html>

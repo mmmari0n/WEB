@@ -1,0 +1,195 @@
+<!DOCTYPE HTML>
+<meta charset="utf-8">
+<html>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+ <head>
+ </head>
+	<body>
+		<div class="hr">
+			<h1 class="master1"> Объекты JS </h1>
+			<div>
+				<h2 class="master11"> Результаты: </h1>
+					<p class="results">
+					</p>
+
+			</div>
+			
+			<button id="btn">Проверить объект Джон</button>
+			<br>
+			<br>
+
+			<button id="btn2">Проверить объект Покупатель</button>
+			<div>
+				<p class="customer">
+				</p>
+			</div>
+			<br>
+			
+			
+			<button id="btn3">Найти заказ с любимым блюдом покупателя</button>
+			<div>
+				<p class="order">
+				</p>
+			</div>
+			<br>
+			
+			<button id="btn4">Поздороваться со студентами</button>
+			<br>
+			<br>
+
+			
+			<button id="btn5">Информация о пользователях</button>
+			<div>
+				<p class="users">
+				</p>
+			</div>
+
+			
+		</div>
+		<script>
+				function addTextToArea(element, text) {
+					element.innerHTML += "<p>"+text+"</p>";
+				}
+				
+				const textArea = document.querySelector('.results');
+				const textCustomer = document.querySelector('.customer');
+				const textOrder = document.querySelector('.order');
+				const textUser = document.querySelector('.users');
+				
+				
+				let user = {
+				name: "Джон",
+				age: 30
+				};
+
+				user.sayHi = function() {
+				alert("Привет!" + " Я "+ user.name);
+				addTextToArea(textArea,user.name + " с Вами поздоровался");
+				};
+				
+				let customer = {
+				ID: 1,
+				name: "Джек",
+				favoredTable: 33,
+				favoredDish: "Latte Coffee",
+				depositeBonus: 200,
+				favoredPayMethod: "ByCard",
+				};
+				
+				customer.view_profile = function() {
+
+				addTextToArea(textCustomer,
+				"ID покупателя: " + customer.ID + "<br>" +
+                "Имя покупателя: " + customer.name + "<br>" +
+                "Предпочитаемый столик: " + customer.favoredTable + "<br>" +
+                "Предпочитаемое блюдо: " + customer.favoredDish + "<br>" +
+                "Бонусы: " + customer.depositeBonus + "<br>" +
+                "Предпочитаемый метод оплаты: " + customer.favoredPayMethod)
+
+				};
+								
+					function order (number,customer,restaurant,dish,table) {
+					this.number=number;
+					this.restaurant=restaurant;
+					this.dish=dish;
+					this.table=table;
+					this.customer=customer;
+					};
+				
+					function restaurant (ID,name) {
+						this.ID=ID;
+						this.name=name;
+						};
+					
+					let arr=[];
+					
+					let restaurant1 = new restaurant(1,"Marco");
+					let restaurant2 = new restaurant(2,"Octopus");
+					
+					let order1 = new order(1,1,restaurant1,"Latte Coffee",33);
+					let order2 = new order(2,1,restaurant2,"Americano Coffee",77);
+					
+					order1.view_order = function(){
+					addTextToArea(textOrder,
+					"Заказ №: " + order1.number + "<br>" + 
+					"Ресторан: " + order1.restaurant.name + "<br>" +
+					"Блюдо: " + order1.dish + "<br>" +
+					"Столик: " + order1.table)
+					}; 
+					order2.view_order = function(){
+					addTextToArea(textOrder,
+					"Заказ №: " + order2.number + "<br>" + 
+					"Ресторан: " + order2.restaurant.name + "<br>" +
+					"Блюдо: " + order2.dish + "<br>" +
+					"Столик: " + order2.table)
+					};
+					arr.push(order1);
+					arr.push(order2);
+				
+				function findOrder(){
+					
+					for (let i = 0; i < arr.length-1; i++) {
+						
+						if (arr[i].customer === 1 && arr[i].dish === customer.favoredDish) {
+						arr[i].view_order()
+						}
+						else
+						{addTextToArea(textOrder,"Ничего не нашлось")
+						}
+					}
+				}
+				
+				function userr(name, isStarosta) {
+					this.name = name;
+					this.isStarosta = isStarosta;
+					
+					}
+				let user1 = new userr("Марина",false);
+				let user2 = new userr("Костя",true);
+									
+				function viewUsers() {
+					
+					addTextToArea(textUser,user1.name + ((user1.isStarosta) ? " является старостой" : " не является старостой"));
+					addTextToArea(textUser,user2.name + ((user2.isStarosta) ? " является старостой" : " не является старостой"));
+
+				}
+				
+				function student(name) {
+					this.name = name;
+					this.sayHi = function() {
+					alert( "Привет! Меня зовут: " + this.name );
+					};
+				}
+				
+				function say_hello_from_students() {
+					
+					let marina = new student("Марина");
+					marina.sayHi(); // Меня зовут: Марина
+					
+					let kostya = new student("Костя");
+					kostya.sayHi(); // Меня зовут: Костя
+
+				}
+
+
+				
+				const btn = document.getElementById('btn');
+				btn.addEventListener('click', user.sayHi);
+				
+				const btn2 = document.getElementById('btn2');
+				btn2.addEventListener('click', customer.view_profile);
+				
+				const btn3 = document.getElementById('btn3');
+				btn3.addEventListener('click', findOrder);
+				
+				const btn4 = document.getElementById('btn4');
+				btn4.addEventListener('click', say_hello_from_students);
+
+				const btn5 = document.getElementById('btn5');
+				btn5.addEventListener('click', viewUsers);
+				
+
+</script>
+</body>
+	
+</html>
